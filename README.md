@@ -3,7 +3,7 @@
 ## Overview
 
 AutoMCM is an open-source, Python-based tool designed to automate beam commissioning for pencil beam scanning (PBS) proton therapy across multiple Monte Carlo (MC) engines, such as MCsquare and TOPAS. This document provides instructions for using the script to configure, tune, and validate beam models based on treatment planning system (TPS) data.
-
+(This code is partially adapted from the matlab implementation in https://gitlab.com/openmcsquare/commissioning/.)
 ## Prerequisites
 
 ### Software Requirements
@@ -146,7 +146,3 @@ def run_all(self):
 - **Customization**: Modify `gantry.energies_to_tune` for multiple energies.
 - **Dependencies**: Ensure `os`, `time`, and `logging` are available (standard libraries).
 - **Support**: For issues, consult the AutoMCM documentation or community resources.
-
----
-
-This Markdown guide provides a clear, step-by-step approach to using the script, tailored to its current implementation. Let me know if you’d like to expand specific sections or adjust the tone!
