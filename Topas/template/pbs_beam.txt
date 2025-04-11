@@ -1,0 +1,32 @@
+################################################################################
+# Editor: LiuChunbo
+# Version: 1.0  
+# from Hongdong Last Modified Date= 12/02/2018 
+################################################################################
+#
+b:Ts/ShowCPUTime = "true"
+# Set up for the Beam source ####################################
+# Primary spot
+s:So/PrimBeam/Type = "Emittance" # Beam, Isotropic, Emittance or PhaseSpace
+s:So/PrimBeam/Component = "BeamPosition"
+s:So/PrimBeam/BeamParticle = "proton"
+d:So/PrimBeam/BeamEnergy = 71.49088669974743 MeV
+u:So/PrimBeam/BeamEnergySpread = 0.7802440195697069
+s:So/PrimBeam/Distribution = "BiGaussian" # Flat or Gaussian
+d:So/PrimBeam/SigmaX = 5.201582230291765 mm
+d:So/PrimBeam/SigmaY = 5.21358077136569 mm
+u:So/PrimBeam/CorrelationX = 0.743360565809705
+u:So/PrimBeam/CorrelationY = 0.9771057920223759
+u:So/PrimBeam/SigmaXPrime = 0.006799470735531991
+u:So/PrimBeam/SigmaYPrime = 0.00597807367650726
+i:So/PrimBeam/NumberOfHistoriesInRun = 500000
+
+#
+s:Ge/BeamPosition/Parent = "World"
+s:Ge/BeamPosition/Type = "Group"
+d:Ge/BeamPosition/TransX = 0. m
+d:Ge/BeamPosition/TransY = 0. m
+d:Ge/BeamPosition/TransZ = -450 mm
+d:Ge/BeamPosition/RotX = 0. deg
+d:Ge/BeamPosition/RotY = 0. deg
+d:Ge/BeamPosition/RotZ = 0. deg

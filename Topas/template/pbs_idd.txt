@@ -1,0 +1,95 @@
+################################################################################
+# PBS spot in air profile calculation
+# Editor: LiuChunbo
+# Version: 1.0  
+# Last Modified Date= 12/02/2018
+################################################################################
+###################### Specific Info Start ##################################
+#
+# Set up for the Beam source ####################################
+# Primary spot
+includeFile= PBS_Beam.txt
+################################################################################
+# Set up for the Geometry
+#########################
+# Set up for the World 
+b:Ge/World/Invisible = "True"
+s:Ge/World/Material  = "G4_AIR"
+# s:Ge/World/Material  = "Vacuum"
+# Set up the Water Phantom (50x50x40cm)
+s:Ge/WaterBox/Parent = "World"
+b:Ge/WaterBox/IsParallel = "f"
+s:Ge/WaterBox/Type   = "TsBox"
+s:Ge/WaterBox/Material = "G4_WATER"
+d:Ge/WaterBox/HLX = 25 cm
+d:Ge/WaterBox/HLY = 25 cm
+d:Ge/WaterBox/HLZ = 20 cm
+d:Ge/WaterBox/TransX =   0.0 cm 
+d:Ge/WaterBox/TransY =   0.0 cm 
+d:Ge/WaterBox/TransZ =   20.0 cm # ISO depth 0 cm
+d:Ge/WaterBox/RotX = 0. deg
+d:Ge/WaterBox/RotY = 0. deg
+d:Ge/WaterBox/RotZ = 0. deg
+#
+# Scoring Bragg Peak Chamber box (Parallel geometry, D8.16x40cm)
+s:Ge/BPCregion/Parent = "WaterBox"
+b:Ge/BPCregion/IsParallel = "t"
+# s:Ge/BPCregion/Material  = "Vacuum"
+s:Ge/BPCregion/Type   = "TsCylinder"
+d:Ge/BPCregion/RMax = 60 mm
+d:Ge/BPCregion/RMin = 0. cm
+d:Ge/BPCregion/HL = 20.0 cm
+d:Ge/BPCregion/TransX =   0.0 cm 
+d:Ge/BPCregion/TransY =   0.0 cm 
+d:Ge/BPCregion/TransZ =   0.0 cm 
+d:Ge/BPCregion/RotX = 0. deg
+d:Ge/BPCregion/RotY = 0. deg
+d:Ge/BPCregion/RotZ = 0. deg
+i:Ge/BPCregion/ZBins = 400
+# 
+#s:Ge/LargeSCregion/Parent = "WaterBox"
+#b:Ge/LargeSCregion/IsParallel = "t"
+#s:Ge/LargeSCregion/Type   = "TsCylinder"
+#d:Ge/LargeSCregion/RMax = 20 cm
+#d:Ge/LargeSCregion/RMin = 0. cm
+#d:Ge/LargeSCregion/HL = 10.0 cm
+#d:Ge/LargeSCregion/TransX =   0.0 cm 
+#d:Ge/LargeSCregion/TransY =   0.0 cm 
+#d:Ge/LargeSCregion/TransZ =   -10.0 cm 
+#d:Ge/LargeSCregion/RotX = 0. deg
+#d:Ge/LargeSCregion/RotY = 0. deg
+#d:Ge/LargeSCregion/RotZ = 0. deg
+#i:Ge/LargeSCregion/ZBins= 200
+# 
+# Set up for the Scoring #######################################
+#
+b:Sc/IDD/Active                    = "True"
+s:Sc/IDD/Quantity                  = "DoseToMedium"
+s:Sc/IDD/OutputType                = "csv"
+b:Sc/IDD/OutputToConsole           = "False"
+s:Sc/IDD/IfOutputFileAlreadyExists = "Overwrite"
+s:Sc/IDD/Component                 = "BPCregion"
+s:Sc/IDD/OutputFile = "IDD_Result"
+#
+# Phys List setting #####################
+s:Ph/ListName = "Default"
+b:Ph/ListProcesses = "False" # Set true to dump list of active physics processes to console
+s:Ph/Default/Type = "Geant4_Modular"
+sv:Ph/Default/Modules = 6 "g4em-standard_opt4" "g4h-phy_QGSP_BIC_HP" "g4decay" "g4ion-binarycascade" "g4h-elastic_HP" "g4stopping"
+d:Ph/Default/EMRangeMin = 100. eV
+d:Ph/Default/EMRangeMax = 300. MeV
+#
+# Graphic ##############################
+b:Gr/Enable           = "f"
+#
+###################### General Info Start #################################
+# includeFile = MostOfSettingPBSspotprofile.txt
+#
+# Set up for the Overall control
+b:Ts/PauseBeforeQuit = "false"
+i:Ts/NumberOfThreads = 0
+i:Ts/MaxInterruptedHistories = 1000000
+i:Ts/ShowHistoryCountAtInterval = 100000
+#
+################### END ########################
+
